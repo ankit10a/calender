@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" type="text/css" href="19.css">
+	<meta charset="UTF-8">
+	<title>javascript-set-s1-19</title>
+</head>
+<body>
+<div id="head"></div>
+<div id="daynm"></div>	
+<div id="datecell"></div>
+</body>
+</html>
+<script type="text/javascript">
+	var month = 7;
+	var year = 2019;
+	var days =["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+	var months =  ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	var dnm = document.getElementById('daynm');
+	var datecell = document.getElementById('datecell');
+	show(month);
+	
+	function show(mon){
+		var head = "<div onclick=previous() class=cell><<</div><div class=month id=mon></div><div class=cell onclick=next()>>></div>";
+		var hd = document.getElementById('head');
+		hd.innerHTML = head;
+		for (let j =0 ; j<7 ; j++){
+			var day = document.createElement("div");
+			day.innerHTML = days[j].substring(1,0);
+			day.setAttribute("class","cell");
+			day.setAttribute("id",days[j] );
+			daynm.appendChild(day);
+		}
+		for(let i = 0 ; i<=41 ; i++){
+			
+			var cell = document.createElement("div");
+				cell.innerHTML = "&nbsp";
+			cell.setAttribute("class","cell")
+			cell.setAttribute("id",i);
+			datecell.appendChild(cell);
+				if((i+1)%7==0){
+					var br = document.createElement("br");
+					datecell.appendChild(br);
+					}
+		}
+		var month = document.getElementById('mon');
+		month.innerHTML = months[mon] + " " + year;
+		var k = mon+1;
+		let firstDay = (new Date(year, mon, 0)).getDay() +1 ;
+		let daysInMonth = new Date(year, k, 0).getDate();
+		 	for(var d = 1 ; d<=daysInMonth ; d++){
+   				var dt =document.getElementById(firstDay+d-1);
+   				dt.innerHTML= d;
+   				dt.setAttribute("onclick","disp(this)");
+   			}
+	}
+	   
+	function previous(){
+		year = (month===0)?year-1:year;
+    	month = (month===0)?11:month-1;			
+			dnm.innerHTML ="";
+			datecell.innerHTML ="";
+			show(month);
+	}
+	function next(){
+		year = (month===11)?year+1:year;
+    	month = (month+1)%12 ;	
+			dnm.innerHTML ="";
+			datecell.innerHTML ="";
+			show(month);
+	}
+	function disp(ele){
+		var det = ele.innerHTML;
+		console.log(det+months[month]+year);
+	}
+</script>

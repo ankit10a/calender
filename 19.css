@@ -1,0 +1,19 @@
+.cell {
+	background: lightgrey;
+	width:25px;
+	display: inline-block;
+	border: 1px solid white;
+	text-align: center;
+	font-weight: bold;
+}
+.month{
+	background: lightgrey;
+	width: 133px ;
+	display: inline-block;
+	border: 1px solid white;
+	text-align: center;
+	font-weight: bold;
+}
+body div :hover{
+	background:  skyblue;
+}
